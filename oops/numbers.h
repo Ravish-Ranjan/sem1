@@ -1,3 +1,5 @@
+#ifndef NUMBERS_H
+#define NUMBER_H
 #include <cstddef>
 
 /**
@@ -106,3 +108,5 @@ size_t mod(size_t num1,size_t num2){
     if(num1 < num2) return num1;
     return mod(sub(num1,num2),num2);
 }
+
+#endif
