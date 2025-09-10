@@ -1,3 +1,6 @@
+#ifndef ARRAY_H
+#define ARRAY_H
+
 #include <iostream>
 #include <vector>
 
@@ -89,44 +92,4 @@ class Array{
         }
 };
 
-int main(){
-    std::vector<int> arrVec = {1,2,3,4,5,6,7,8};
-    Array<int,10>* arr = new Array<int,10>(arrVec);
-    
-    std::cout << "Initially array" << std::endl;
-    arr->print();
-    
-    std::cout << "\nAdding 9 in last" << std::endl;
-    arr->append(9);
-    arr->print();
-    
-    std::cout << "\nAdding 10 at index 1" << std::endl;
-    arr->insert(10,1);
-    arr->print();
-    
-    std::cout << "\nDeleting element at index 1" << std::endl;
-    arr->deleteElem(1);
-    arr->print();
-    
-    std::cout << "\nSearching 5 in array" << std::endl;
-    int at = arr->search(5);
-    if (at >= 0) std::cout << "Found at index : " << at << std::endl;
-    else std::cout << "Not found"<< std::endl;
-    
-    std::cout << "\nSearching 11 in array" << std::endl;
-    at = arr->search(11);
-    if (at >= 0) std::cout << "Found at index : " << at << std::endl;
-    else std::cout << "Not found"<< std::endl;
-
-    std::cout << "\nGetting element at index 6" << std::endl;
-    std::cout << "Element : " << arr->get(6) << std::endl;
-    
-    std::cout << "\nSetting 2 at index 0" << std::endl;
-    arr->set(2,0);
-    arr->print();
-
-    std::cout << "\nMinimum in array : " << arr->min() << std::endl;
-
-    std::cout << "\nMaximum in array : " << arr->max() << std::endl;
-    return 0;
-}
+#endif

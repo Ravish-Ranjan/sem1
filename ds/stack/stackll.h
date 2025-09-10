@@ -1,12 +1,15 @@
+#ifndef STACKLL_H
+#define STACKLL_H
+
 #include <iostream>
-#include "../linkedlist/linklist.cpp"
+#include "../linkedlist/linklist.h"
 
 template <class T>
 class Stack{
     private:
         LL<T>* stack = nullptr;
     public:
-        Node<T>* top = nullptr;
+        NodeSin<T>* top = nullptr;
         Stack(){
             this->stack = new LL<T>();
             this->top = stack->head;
@@ -16,7 +19,7 @@ class Stack{
         }
         bool isFull(){
             try            {
-                Node<T>* newNode = new Node<T>(10);
+                NodeSin<T>* newNode = new NodeSin<T>(10);
                 delete newNode;
                 return false;
             }
@@ -52,7 +55,7 @@ class Stack{
         }
         void print(){
             std::cout << "Stack : <-";
-            Node<T>* cur = stack->head;
+            NodeSin<T>* cur = stack->head;
             while (cur != nullptr){
                 std::cout << "|" << cur->value;
                 cur = cur->next;
@@ -61,29 +64,4 @@ class Stack{
         }
 };
 
-int main(){
-    Stack<int>* s = new Stack<int>();
-    s->print();
-    s->push(10);
-    s->print();
-    s->push(20);
-    s->print();
-    s->push(30);
-    s->print();
-    int ret = s->pop();
-    s->print();
-    std::cout << "return : " << ret << std::endl;
-    s->pop();
-    s->print();
-    s->pop();
-    s->print();
-    // s->pop();
-    // std::cout << "Peak : " << s->peak() << std::endl; 
-    // s->print();
-    s->push(40);
-    s->print();
-    ret = s->peak();
-    std::cout << "top : " << ret << std::endl;
-
-    return 0;
-}
+#endif

@@ -1,25 +1,29 @@
+#ifndef DOUBLELINKLIST_H
+#define DOUBLELINKLIST_H
+
 #include <iostream>
 
-template <class T>
-class Node{
+template <typename T>
+class NodeDob{
     public:
         T value;
-        Node* next = nullptr;
-        Node* prev = nullptr;
-        Node(T value) : value(value){}
+        NodeDob* next = nullptr;
+        NodeDob* prev = nullptr;
+        NodeDob(T value) : value(value){}
         void print(){
             std::cout << "<-(" << this->value << ")->" << this->next << std::endl;
         }
 };
 
+
 template <class T>
 class DLL{
     public:
-        Node<T>* head = nullptr;
-        Node<T>* tail = nullptr;
+        NodeDob<T>* head = nullptr;
+        NodeDob<T>* tail = nullptr;
         // insert at start
         void inStart(T value){
-            Node<T>* newNode = new Node<T>(value);
+            NodeDob<T>* newNode = new NodeDob<T>(value);
             if (head == nullptr){
                 head = tail = newNode;
             } else {
@@ -30,7 +34,7 @@ class DLL{
         }
         // insert at end
         void inEnd(T value){
-            Node<T>* newNode = new Node<T>(value);
+            NodeDob<T>* newNode = new NodeDob<T>(value);
             if (tail == nullptr){
                 head = tail = newNode;
             } else {
@@ -40,34 +44,33 @@ class DLL{
             }
         }
         // insert after value
-        void inAfter(T value,T after){
-            if (head == nullptr)
-                throw "Empty list";
-            Node<T>* cur = head;
-            while (cur->next != nullptr && cur->value != after)
-                cur = cur->next;
-            if(cur->next == nullptr) throw "Element not found";
-            Node<T>* newNode = new Node<T>(value);
-            newNode->prev=cur;
+        void inAfter(T value, T after) {
+            if (!head) throw "Empty list";
+    
+            NodeDob<T>* cur = head;
+            while (cur && cur->value != after) cur = cur->next;
+            if (!cur) throw "Element not found";
+    
+            NodeDob<T>* newNode = new NodeDob<T>(value);
             newNode->next = cur->next;
-            if(cur->next != nullptr)
-                cur->next->prev = newNode;
+            newNode->prev = cur;
+            if (cur->next) cur->next->prev = newNode;
             else tail = newNode;
             cur->next = newNode;
         }
-        // insert before value
-        void inBefore(T value,T before){
-            if (tail == nullptr)
-                throw "Empty list";
-            Node<T>* cur = tail;
-            while(cur->prev != nullptr && cur->value != before)
-                cur = cur->prev;
-            if(cur->next ==nullptr) throw "Element not found";
-            Node<T>* newNode = new Node<T>(value);
+        // Insert before value
+        void inBefore(T value, T before) {
+            if (!head) throw "Empty list";
+    
+            NodeDob<T>* cur = head;
+            while (cur && cur->value != before) cur = cur->next;
+            if (!cur) throw "Element not found";
+    
+            NodeDob<T>* newNode = new NodeDob<T>(value);
             newNode->next = cur;
             newNode->prev = cur->prev;
-            if (cur->prev != nullptr) cur->prev->next = newNode;
-            else head = newNode; 
+            if (cur->prev) cur->prev->next = newNode;
+            else head = newNode;
             cur->prev = newNode;
         }
 
@@ -75,7 +78,7 @@ class DLL{
         T delStart(){
             if(head == nullptr)
                 throw "Empty list";
-            Node<T>* temp = head;
+            NodeDob<T>* temp = head;
             if(head->next == nullptr){
                 head = tail = nullptr;
             } else {
@@ -90,7 +93,7 @@ class DLL{
         T delEnd(){
             if (tail == nullptr)
                 throw "Empty list";
-            Node<T>* temp = tail;
+            NodeDob<T>* temp = tail;
             if(tail->prev == nullptr){
                 head = tail = nullptr;
             } else {
@@ -105,7 +108,7 @@ class DLL{
         T delValue(T value){
             if (tail == nullptr)
                 throw "Empty list";
-            Node<T>* cur = head;
+            NodeDob<T>* cur = head;
             while (cur != nullptr && cur->value != value)
                 cur = cur->next;
             if (cur == nullptr) throw "Element not found";
@@ -122,13 +125,13 @@ class DLL{
         T delAfter(T after){
             if (tail == nullptr)
                 throw "Empty list";
-            Node<T>* cur = head;
+            NodeDob<T>* cur = head;
             while (cur != nullptr && cur->value != after)
                 cur = cur->next;
             if (cur == nullptr || cur->next == nullptr)
                 throw "Nothing after given element";
     
-            Node<T>* temp = cur->next;
+            NodeDob<T>* temp = cur->next;
             cur->next = temp->next;
             if (temp->next != nullptr) temp->next->prev = cur;
             else tail = cur; 
@@ -140,13 +143,13 @@ class DLL{
         T delBefore(T before){
             if(tail == nullptr)
                 throw "Empty list";
-            Node<T>* cur = head;
+            NodeDob<T>* cur = head;
             while (cur != nullptr && cur->value != before)
                 cur = cur->next;
             if (cur == nullptr || cur->prev == nullptr)
                 throw "Nothing before given element";
     
-            Node<T>* temp = cur->prev;
+            NodeDob<T>* temp = cur->prev;
             cur->prev = temp->prev;
             if (temp->prev != nullptr) temp->prev->next = cur;
             else head = cur; 
@@ -161,7 +164,7 @@ class DLL{
             if(head == nullptr){
                 return;
             }
-            Node<T>*cur = head;
+            NodeDob<T>*cur = head;
             while(cur->next != nullptr){
                 std::cout << "-" << cur->value << "- ";
                 cur = cur->next;
@@ -169,23 +172,22 @@ class DLL{
             std::cout << "-" << cur->value << "- " << "nullptr" << std::endl;
         }
         // find
-        bool find(T value,bool print = false){
-            if(head == nullptr) return false;
-            Node<T>* cur = head;
-            while(cur->next !=nullptr && cur->value != value)
+        bool find(T value, bool verbose = false) {
+            NodeDob<T>* cur = head;
+            while (cur) {
+                if (cur->value == value) {
+                    if (verbose) std::cout << "Found: " << value << std::endl;
+                    return true;
+                }
                 cur = cur->next;
-            if(cur->next == nullptr) return false;
-            if(cur->value == value){
-                if(print)
-                    std::cout << "Element found at after " << cur->prev->value<<" and before " << cur->next->value << std::endl;
-                return true;
             }
+            return false;
         }
         // clear
         void clear(){
-            Node<T> *cur = head;
+            NodeDob<T> *cur = head;
             while (cur->next != nullptr){
-                Node<T> *temp = cur;
+                NodeDob<T> *temp = cur;
                 cur = cur->next;
                 delete temp;
             }
@@ -195,7 +197,7 @@ class DLL{
         int size(){
             if(head == nullptr) return 0;
             int count = 0;
-            Node<T>* cur = head;
+            NodeDob<T>* cur = head;
             while(cur->next != nullptr){
                 count++;
                 cur = cur->next;
@@ -213,25 +215,4 @@ class DLL{
         }
 };
 
-int main(){
-    DLL<int>* l1 = new DLL<int>();
-    l1->inEnd(10);
-    l1->inEnd(20);
-    l1->inEnd(30);
-    l1->inEnd(40);
-    l1->inEnd(50);
-    l1->print();
-    
-    DLL<int>* l2 = new DLL<int>();
-    l2->inEnd(60);
-    l2->inEnd(70);
-    l2->inEnd(80);
-    l2->inEnd(90);
-    l2->inEnd(100);
-    l2->print();
-
-    l1->merge(l2);
-    l1->print();
-    return 0;
-
-}
+#endif
