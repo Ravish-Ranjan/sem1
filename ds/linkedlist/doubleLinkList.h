@@ -2,6 +2,7 @@
 #define DOUBLELINKLIST_H
 
 #include <iostream>
+#include <string>
 
 template <typename T>
 class NodeDob{
@@ -159,9 +160,10 @@ class DLL{
         }
 
         // print
-        void print(){
-            std::cout << "List : nullptr ";
+        void print(std::string msg = "List"){
+            std::cout << msg << " : nullptr ";
             if(head == nullptr){
+                std::cout << std::endl;
                 return;
             }
             NodeDob<T>*cur = head;

@@ -5,7 +5,7 @@
 #include "../linkedlist/linklist.h"
 
 template <class T>
-class Stack{
+class StackLL{
     private:
         LL<T>* stack = nullptr;
     public:
@@ -61,6 +61,9 @@ class Stack{
                 cur = cur->next;
             }
             std::cout << "]" << std::endl;
+        }
+        ~StackLL(){
+            this->stack->clear();
         }
 };
 
