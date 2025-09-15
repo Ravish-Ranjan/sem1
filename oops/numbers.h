@@ -109,4 +109,28 @@ size_t mod(size_t num1,size_t num2){
     return mod(sub(num1,num2),num2);
 }
 
+/**
+ * @brief function to find greatest common divisor of two non-negative numbers
+ * @param num1 first non-negative number
+ * @param num2 second non-negative number
+ * @sideEffects no side-effects
+ * @return size_t GCD of both numbers
+ * @error-handle if either number is zero than zero is retured
+ */
+size_t gcd(size_t num1,size_t num2){
+    /* method : subtract smaller number from bigger number while
+                setting the difference to the previous bigger number
+                until both are equal. If either number is zero than
+                zero is retured
+       base case : gcd(n1,n2):n1,n2 = 0 => 0
+       base case : gcd(n1,n2):n1 =- n2 => n1
+       reccursive call gcd(n1,n2):n1>n2 => gcd(sub(n1,n2),n2)
+       reccursive call gcd(n1,n2):n1<n2 => gcd(n1,sub(n2,n1))
+    */
+   if (num1 == 0 || num2 == 0) return 0; // either 0 case
+   if (num1 == num2) return num1; // equal case
+   if (num1 > num2) return gcd(sub(num1,num2),num2);
+   if (num1 < num2) return gcd(num1,sub(num2,num1));
+}
+
 #endif
