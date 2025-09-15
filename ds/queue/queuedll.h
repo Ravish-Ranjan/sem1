@@ -1,5 +1,5 @@
-#ifndef QUEUELL_H
-#define QUEUELL_H
+#ifndef QUEUEDLL_H
+#define QUEUEDLL_H
 
 #include "../linkedlist/doubleLinkList.h"
 
@@ -7,9 +7,9 @@ template <typename T>
 class QueueDLL{
     private:
         DLL<T>* queue = nullptr;
-    public:
         NodeDob<T>* head = nullptr;
         NodeDob<T>* tail = nullptr;
+    public:
         QueueDLL(){
             this->queue = new DLL<T>();
             this->head = queue->head;
@@ -19,12 +19,11 @@ class QueueDLL{
             return this->head == nullptr;
         }
         bool isFull(){
-            try            {
+            try{
                 NodeDob<T>* newNode = new NodeDob<T>(10);
                 delete newNode;
                 return false;
-            }
-            catch(const std::exception& e)            {
+            } catch(const std::exception& e){
                 return true;
             }
         }
@@ -56,6 +55,8 @@ class QueueDLL{
         }
         ~QueueDLL(){
             this->queue->clear();
+            delete this->head;
+            delete this->tail;
         }
 };
 

@@ -29,7 +29,8 @@ class StackLL{
         }
         void push(T value){
             if (this->isFull()){
-                throw std::runtime_error("Stack Overflow");
+                std::cout << "Stack Overflow" << std::endl;
+                return;
             } else {
                 this->stack->inStart(value);
                 this->top = stack->head;
@@ -37,7 +38,7 @@ class StackLL{
         }
         T pop(){
             if(this->isEmpty()){
-                throw std::runtime_error("Stack Underflow");
+                std::cout << "Stack Underflow" << std::endl;
             } else {
                 top = top->next;
                 return this->stack->delStart();
