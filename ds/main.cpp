@@ -1,25 +1,31 @@
-#include "./linkedlist/linkList.h"
+#include "./queue/queuell.h"
 #include <iostream>
 
 int main(){
-    LL<int> l;
-    l.delAfter(10);
-    l.delBefore(10);
-    l.delEnd();
-    l.delStart();
-    l.delValue(10);
-    l.print();
+    QueueLL<int> q;
+    q.dequeue();
 
-    l.inStart(10);
-    l.inEnd(20);
-    l.inStart(30);
-    l.inEnd(40);
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.print();
 
-    l.inAfter(50,10);
-    l.inAfter(30,1);
-    l.inAfter(20,2);
-    l.inAfter(40,3);
-    l.print();
+    std::cout << "Head : " << q.peakHead() << std::endl;
+    std::cout << "Tail : " << q.peakTail() << std::endl;
+    std::cout << "Size : " << q.size() << std::endl;
+    
+    std::cout << "Dequeue : " << q.dequeue() << std::endl;
+
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+    q.dequeue();
+    q.print();
+
+
 
     return 0;
 }

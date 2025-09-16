@@ -10,6 +10,7 @@ class CLL{
     public:
         NodeSin<T>* tail = nullptr;
         NodeSin<T>* head = nullptr;
+
         void inStart(T value){
             NodeSin<T>* newNode = new NodeSin<T>(value);
             if (this->head == nullptr){
@@ -32,11 +33,8 @@ class CLL{
             this->tail->next = newNode;
             this->tail = newNode;
         }
-        void inAfter(T value,T after){
-            if (this->head == nullptr){
-                std::cout << "Empty list" << std::endl;
-                return;
-            }
+        void inAfter(T after,T value){
+            if (this->head == nullptr) return;
             if(this->head->next == this->head){
                 if(this->head->value == after){
                     this->inEnd(value);
@@ -55,12 +53,30 @@ class CLL{
                 }
             }
         }
+        void inBefore(T before,T value){
+            if (this->head == nullptr) return;
+            
+            if(this->head->value == before){
+                this->inStart(value);
+                return;
+            }
+            
+            if(this->head->next == this->head) return; 
+            
+            NodeSin<T>* cur = this->head;
+            while(cur->next != this->head && cur->next->value != before){
+                cur = cur->next;
+            }
+            
+            if(cur->next->value == before){
+                NodeSin<T>* newNode = new NodeSin<T>(value);
+                newNode->next = cur->next;
+                cur->next = newNode;
+            }
+        }
 
         T delStart(){
-            if(this->head == nullptr){
-                std::cout << "Empty list" << std::endl;
-                return T();
-            }
+            if(this->head == nullptr) return T();
             if(this->head->next == this->head){
                 NodeSin<T>* temp = this->head;
                 T ret = temp->value;
@@ -76,10 +92,7 @@ class CLL{
             return ret;
         }
         T delEnd(){
-            if(this->tail == nullptr){
-                std::cout << "Empty list" << std::endl;
-                return T();
-            }
+            if(this->tail == nullptr) return T();
             if(this->tail->next == this->tail){
                 NodeSin<T>* temp = this->tail;
                 T ret = this->tail->value;
@@ -98,41 +111,108 @@ class CLL{
             return ret;
         }
         T delAfter(T after){
-            if(this->head == nullptr){
-                std::cout << "Empty list" << std::endl;
-                return T();
-            }
-            if(this->head->next == this->head){
-                if(this->head->value == after){
-                    T ret = this->head->value;
-                    this->head = this->tail = nullptr;
-                    return ret;
-                }
-                return T();
-            }
+            if(this->head == nullptr) return T();
+            if(this->head->next == this->head) return T();
+
             NodeSin<T>* cur = this->head;
-            while (cur->next != this->head && cur->value != after)
-                cur = cur->next;
-            if(cur->value == after){
-                if(cur == this->tail) 
-                    return this->delStart();
-                if(cur == this->head){
-                    if(this->head->next == this->tail){
-                        NodeSin<T>* temp = this->tail;
-                        this->head->next = this->head;
-                        this->tail = this->head;
-                        T ret = temp->value;
-                        delete temp;
-                        return ret;
-                    }
-                    NodeSin<T>* temp = this->head->next;
-                    this->head = this->head->next;
-                    this->tail->next = this->head;
+            do {
+                if(cur->value == after){
+                    NodeSin<T>* temp = cur->next;
                     T ret = temp->value;
+                    
+                    if(temp == this->head){
+                        this->head = this->head->next;
+                        this->tail->next = this->head;
+                    }
+                    else if(temp == this->tail){
+                        this->tail = cur;
+                        cur->next = this->head;
+                    }
+                    else {
+                        cur->next = temp->next;
+                    }
+                    
                     delete temp;
                     return ret;
                 }
+                cur = cur->next;
+            } while(cur != this->head);
+            return T();
+        }
+        T delBefore(T before){
+            if(this->head == nullptr) return T();
+            
+            if(this->head->next == this->head) return T();
+            
+            if(this->head->value == before){
+                return this->delEnd();
             }
+            
+            NodeSin<T>* cur = this->head;
+            NodeSin<T>* prev = nullptr;
+            
+            do {
+                if(cur->next->value == before){
+                    T ret = cur->value;
+                    if(cur == this->head){
+                        this->head = this->head->next;
+                        this->tail->next = this->head;
+                    }
+                    else if(cur == this->tail){
+                        NodeSin<T>* temp = this->head;
+                        while(temp->next != this->tail)
+                            temp = temp->next;
+                        temp->next = this->head;
+                        this->tail = temp;
+                    }
+                    else {
+                        NodeSin<T>* temp = this->head;
+                        while(temp->next != cur){
+                            temp = temp->next;
+                        }
+                        temp->next = cur->next;
+                    }
+                    
+                    delete cur;
+                    return ret;
+                }
+                cur = cur->next;
+            } while(cur != this->head);
+            return T();
+        }
+        T delValue(T value){
+            if(this->head == nullptr) return T();
+            
+            if(this->head->next == this->head && this->head->value == value){
+                T ret = this->head->value;
+                delete this->head;
+                this->head = this->tail = nullptr;
+                return ret;
+            }
+            
+            if(this->head->value == value)
+                return this->delStart();
+            
+            NodeSin<T>* cur = this->head;
+            do {
+                if(cur->next->value == value){
+                    NodeSin<T>* temp = cur->next;
+                    T ret = temp->value;
+                    
+                    if(temp == this->tail){
+                        this->tail = cur;
+                        cur->next = this->head;
+                    }
+                    else {
+                        cur->next = temp->next;
+                    }
+                    
+                    delete temp;
+                    return ret;
+                }
+                cur = cur->next;
+            } while(cur != this->head);
+            return T();
         }
 
         void clear(){
@@ -145,18 +225,18 @@ class CLL{
             } while (cur != head);
             this->head = this->tail = nullptr;
         }
-        void print(std::string msg="List : "){
+        void print(std::string msg="List"){
             if(this->head == nullptr){
-                std::cout << "null\n\n";
+                std::cout << msg << " : " << "null\n\n";
                 return;
             }
             NodeSin<T> *cur = head;
-            std::cout << msg << "->";
+            std::cout << msg << " : " << "->";
             while (cur->next != this->head){
                 std::cout << cur->value << "->";
                 cur = cur->next;
             }
-            std::cout << "loopback\n\n";
+            std::cout << cur->value << "->" << "loopback\n\n";
         }
         bool find(T value,bool print = false){
             if (head == nullptr) return false;
@@ -183,6 +263,45 @@ class CLL{
             }
             return count;
         }
+        void merge(CLL<T>&secondList){
+            if (secondList.head == nullptr) return;
+            if (this->head == nullptr){
+                this->head = secondList.head;
+                this->tail = secondList.tail;
+                return;
+            }
+            this->tail->next = secondList.head;
+            secondList.tail->next = this->head;
+            this->tail = secondList.tail;
+        }
+        void rotateRight(int times=1){
+            if (
+                this->head == nullptr || 
+                this->head == this->tail
+            ) return;
+
+            times %= this->size();
+            while (times--) {
+                head = tail;
+                NodeSin<T>* cur = head;
+                while (cur->next != tail)
+                    cur = cur->next;
+                tail = cur;
+            }
+        }
+        void rotateLeft(int times=1){
+            if (
+                this->head == nullptr || 
+                this->head == this->tail
+            ) return;
+
+            times %= this->size();
+            while (times--) {
+                head = head->next;
+                tail = tail->next;
+            }
+        }
+        
         ~CLL(){
             this->clear();
         }

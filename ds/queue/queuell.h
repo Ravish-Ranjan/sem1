@@ -12,7 +12,8 @@ class QueueLL{
     public:
         QueueLL(){
             this->queue = new LL<T>();
-            this->head = this->tail = this->queue->head;
+            this->head = this->queue->head;
+            this->tail = this->queue->tail;
         }
         bool isEmpty(){
             return this->head == nullptr;
@@ -28,29 +29,21 @@ class QueueLL{
         }
         void enqueue(T value){
             if (isFull()){
-                std::cout << "Queue full" << std::endl;
-                return T();
+                std::cout << "Full queue" << std::endl;
+                return;
             }
-            NodeSin<T>* newNode = new NodeSin<T>(value);
-            if(this->head == nullptr && this->tail == nullptr){
-                this->head = this->tail = newNode;           
-            }
-            this->tail->next = newNode;
-            this->tail = newNode;
+            this->queue->inEnd(value);
+            this->head = this->queue->head;
+            this->tail = this->queue->tail;
         }
         T dequeue(){
             if (this->isEmpty()){
                 std::cout << "Empty queue" << std::endl;
                 return T();
             }
-            if (this->head->next == nullptr){
-                T ret = this->queue->delStart();
-                this->head = nullptr;
-                this->tail = nullptr;
-                return ret;
-            }
             T ret = this->queue->delStart();
             this->head = this->queue->head;
+            this->tail = this->queue->tail;
             return ret;
         }
         T peakHead(){
@@ -71,7 +64,7 @@ class QueueLL{
             this->queue->print("Queue");
         }
         int size(){
-            return this->queue->getSize();
+            return this->queue->size();
         }
         ~QueueLL(){
             this->queue->clear();

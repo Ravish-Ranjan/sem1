@@ -28,13 +28,26 @@ class QueueDLL{
             }
         }
         void enqueue(T value){
+            if (isFull()){
+                std::cout << "Full queue" << std::endl;
+                return;
+            }
             this->queue->inEnd(value);
+            this->head = this->queue->head;
+            this->tail = this->queue->tail;
         }
         T dequeue(){
-            return this->queue->delStart();
+            if (this->isEmpty()){
+                std::cout << "Empty queue" << std::endl;
+                return T();
+            }
+            T ret = this->queue->delStart()
+            this->head = this->queue->head;
+            this->tail = this->queue->tail;
+            return ret;
         }
         T peakHead(){
-            if (this->head == nullptr){
+            if (this->isEmpty()){
                 std::cout << "Empty queue" << std::endl;
                 return T();
             }

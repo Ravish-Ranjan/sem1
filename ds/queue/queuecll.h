@@ -28,12 +28,12 @@ class QueueCLL{
             }
         }
         void enqueue(T value){
-            std::cout << "inserting " << value << std::endl;
             if (isFull()){
-                std::cout << "Queue full" << std::endl;
+                std::cout << "Full queue" << std::endl;
                 return;
             }
             this->queue->inEnd(value);
+            this->head = this->queue->head;
             this->tail = this->queue->tail;
         }
         T dequeue(){
@@ -41,14 +41,9 @@ class QueueCLL{
                 std::cout << "Empty queue" << std::endl;
                 return T();
             }
-            if (this->head->next == this->head){
-                T ret = this->queue->delStart();
-                this->head = nullptr;
-                this->tail = nullptr;
-                return ret;
-            }
             T ret = this->queue->delStart();
             this->head = this->queue->head;
+            this->tail = this->queue->tail;
             return ret;
         }
         T peakHead(){
@@ -69,7 +64,7 @@ class QueueCLL{
             this->queue->print("Queue");
         }
         int size(){
-            return this->queue->getSize();
+            return this->queue->size();
         }
         void rotateRight(){
             this->head = this->head->next;

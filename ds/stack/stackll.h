@@ -31,18 +31,18 @@ class StackLL{
             if (this->isFull()){
                 std::cout << "Stack Overflow" << std::endl;
                 return;
-            } else {
-                this->stack->inStart(value);
-                this->top = stack->head;
-            }
+            } 
+            this->stack->inStart(value);
+            this->top = stack->head;
         }
         T pop(){
             if(this->isEmpty()){
                 std::cout << "Stack Underflow" << std::endl;
-            } else {
-                top = top->next;
-                return this->stack->delStart();
-            }
+                return T();
+            } 
+            T ret = this->stack->delStart(); 
+            this->top = this->stack->head;
+            return ret;
         }
         T peak(){
             if (this->isEmpty()){
@@ -52,7 +52,7 @@ class StackLL{
             return this->top->value;
         }
         int size(){
-            return this->stack->getSize();
+            return this->stack->size();
         }
         void print(){
             std::cout << "Stack : <-";
