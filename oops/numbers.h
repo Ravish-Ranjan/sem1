@@ -128,9 +128,54 @@ size_t gcd(size_t num1,size_t num2){
        reccursive call gcd(n1,n2):n1<n2 => gcd(n1,sub(n2,n1))
     */
    if (num1 == 0 || num2 == 0) return 0; // either 0 case
-   if (num1 == num2) return num1; // equal case
-   if (num1 > num2) return gcd(sub(num1,num2),num2);
-   if (num1 < num2) return gcd(num1,sub(num2,num1));
+   else if (num1 > num2) return gcd(sub(num1,num2),num2);
+   else if (num1 < num2) return gcd(num1,sub(num2,num1));
+   else return num1; // equal case
+}
+
+/**
+ * @brief function to help find lcm
+ * @param num1 first non-negative number
+ * @param num2 second non-negative number
+ * @param lcm candicate for lcm of both numbers
+ * @sideEffects no side-effects
+ * @return size_t LCM of both numbers
+ */
+size_t lcm_helper(size_t num1,size_t num2,size_t lcm){
+  /* method : if both numbers can divide lcm then return the lcm
+              else add first number to lcm and reccursive call again
+     base case : lcm_helper(n1,n2,lcm):lcm%n1 == 0 && lcm%n2 == 0 => lcm
+     reccursive case : lcm_helper(n1,n2,lcm):lcm%n1 != 0 || lcm%n2 != 0 => lcm_helper(n1,n2,add(lcm,n1))
+  */
+  if (lcm%num1 == 0 && lcm%num2 == 0)
+    return lcm;
+  return lcm_helper(num1,num2,add(lcm,num1));
+ }
+
+/**
+ * @brief function to find lcm
+ * @param num1 first non-negative number
+ * @param num2 second non-negative number
+ * @sideEffects no side-effects
+ * @return size_t LCM of both numbers
+ */
+size_t lcm(size_t num1,size_t num2){
+  /* method : get the max number from both input and use lcm_helper to get lcm while setting candicate to 
+              max number. if any of the number is zero than return 0. if both are same then return any 
+              number.
+     base case : lcm(n1,n2):n1 == 0 || n2 == 0 => 0
+     base case : lcm(n1,n2):n1 == n2 => n1
+     reccursive case : lcm(n1,n2): n1>n2 => lcm_helper(n1,n2,n1)
+     reccursive case : lcm(n1,n2): n1<n2 => lcm_helper(n2,n1,n2)
+  */
+  if (num1 == 0 || num2 == 0)
+    return 0;
+  else if (num1 > num2)
+    return lcm_helper(num1,num2,num1);
+  else if (num1 < num2)
+    return lcm_helper(num2,num1,num2);
+  else 
+    return num1;
 }
 
 #endif
