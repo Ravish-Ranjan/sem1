@@ -4,16 +4,19 @@ from matplotlib import pyplot as plt
 from betweenness import calcEdgeBetweenness,calcNodeBetweenness
 from closeness import calcCloseness
 from weightedDegree import calcWeightedDegree
+from ravasz import similarityMatrix,aglo
 
 
 if __name__ == "__main__":
     G = nx.Graph()
     # G.add_nodes_from("ABCD")
-    G.add_nodes_from("ABCDEFGH")
-    
+
     # G.add_edge("A","B",weight=1)
     # G.add_edge("B","C",weight=1)
     # G.add_edge("C","D",weight=1)
+
+    G.add_nodes_from("ABCDEFGH")
+
     
     G.add_edge("A","B",weight=3)
     G.add_edge("C","D",weight=1)
@@ -27,10 +30,12 @@ if __name__ == "__main__":
     G.add_edge("E","H",weight=3)
     G.add_edge("C","H",weight=5)
 
+    # calcWeightedDegree(G)
     # calcEdgeBetweenness(G)
     # calcNodeBetweenness(G)
-    calcCloseness(G)
-    
+    # calcCloseness(G)
+    aglo(G)
+
     # pos = nx.spring_layout(G,seed=7)
     # nx.draw(G, pos, with_labels=True, node_color="lightblue", node_size=1000, font_size=10)
     

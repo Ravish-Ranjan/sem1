@@ -11,8 +11,7 @@ def calcCloseness(G:nx.Graph):
         for v in nodes:
             if (u != v):
                 shortestDist = shortestPathsNeg(G,u,v,False)
-                if (shortestDist == float("inf")):
-                    print(u,v,shortestDist)
+                if (shortestDist != float("inf")):
                     sumOfDist += shortestDist
                     reachable += 1
         if sumOfDist > 0:

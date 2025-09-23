@@ -41,7 +41,7 @@ def shortestPathsNeg(G:nx.Graph,src,dest,givePaths = True):
 
     for _ in range(len(G.nodes()) - 1):
         for u,v,data in G.edges(data=True):
-            w = data["weight"]
+            w = data.get("weight",1)
             if dist[u] + w < dist[v]:
                 dist[v] = dist[u] + w
                 pred[v] = [u]
@@ -54,7 +54,7 @@ def shortestPathsNeg(G:nx.Graph,src,dest,givePaths = True):
             raise ValueError("Graph has a cycle with negative weight")
         
     if dist[dest] == float("inf"):
-        return float("inf")
+        return [] if givePaths else float("inf")
     
     if givePaths:
         paths = []
