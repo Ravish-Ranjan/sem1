@@ -1,31 +1,33 @@
-#include "./queue/queuell.h"
+#include "./tree/binaryTree.h"
 #include <iostream>
 
 int main(){
-    QueueLL<int> q;
-    q.dequeue();
-
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
-    q.print();
-
-    std::cout << "Head : " << q.peakHead() << std::endl;
-    std::cout << "Tail : " << q.peakTail() << std::endl;
-    std::cout << "Size : " << q.size() << std::endl;
+    BinTree<int>* b = new BinTree<int>();
+    b->printTree(b->root);
+    std::cout << "------------" << std::endl;
+    b->root = b->insert(30,b->root);
+    b->root = b->insert(10,b->root);
+    b->root = b->insert(20,b->root);
+    b->root = b->insert(50,b->root);
+    b->printTree(b->root);
+    std::cout << "------------" << std::endl;
+    std::cout << "Preorder : " ;
+    b->preOrder(b->root) ;
+    std::cout << std::endl;
+    std::cout << "Inorder : " ;
+    b->inOrder(b->root) ;
+    std::cout << std::endl;
+    std::cout << "Postorder : " ;
+    b->postOrder(b->root) ;
+    std::cout << std::endl;
+    std::cout << "Leaves : " << b->countLeave(b->root) << std::endl;
     
-    std::cout << "Dequeue : " << q.dequeue() << std::endl;
-
-    q.dequeue();
-    q.print();
-    q.dequeue();
-    q.print();
-    q.dequeue();
-    q.print();
-    q.dequeue();
-    q.print();
-
-
+    b->root = b->deleteNode(10,b->root);
+    b->printTree(b->root);
+    std::cout << "------------" << std::endl;
+    b->root = b->deleteNode(30,b->root);
+    b->printTree(b->root);
+    std::cout << "------------" << std::endl;
 
     return 0;
 }
