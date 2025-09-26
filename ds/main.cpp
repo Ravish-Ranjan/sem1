@@ -21,12 +21,16 @@ int main(){
     b->postOrder(b->root) ;
     std::cout << std::endl;
     std::cout << "Leaves : " << b->countLeave(b->root) << std::endl;
+    std::cout << "Height : " << b->height(b->root) << std::endl;
     
     b->root = b->deleteNode(10,b->root);
+    std::cout << "------------" << std::endl;
     b->printTree(b->root);
+    std::cout << "Height : " << b->height(b->root) << std::endl;
     std::cout << "------------" << std::endl;
     b->root = b->deleteNode(30,b->root);
     b->printTree(b->root);
+    std::cout << "Height : " << b->height(b->root) << std::endl;
     std::cout << "------------" << std::endl;
 
     return 0;

@@ -1,5 +1,6 @@
 # assignment files
 assign-*.*
+/dbms/image*.png
 
 # testing
 test*.*
