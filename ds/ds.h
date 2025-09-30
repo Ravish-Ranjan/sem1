@@ -8,6 +8,7 @@
 #include "./queue/queuecll.h"
 #include "./stack/stackll.h"
 #include "./array.h"
-#include "./tree/binaryTree.h"
+#include "./tree/bst.h"
+#include "./tree/avl.h"
 
 #endif
