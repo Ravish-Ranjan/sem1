@@ -11,26 +11,30 @@ const bodyElements = document.querySelectorAll("body>*");
 const footer = document.getElementsByTagName("footer");
 
 // manipulatting data
-// paragraphs[0].innerHTML = "content of paragraph in changes"
+paragraphs[0].innerHTML = "content of paragraph in changes";
 
 // adding new element
-// const newTextArea = document.createElement("textarea");
-// newTextArea.rows = 10;
-// newTextArea.cols = 40;
-// newTextArea.style.backgroundColor = "#23272e";
-// newTextArea.style.color = "white"
+const newTextArea = document.createElement("textarea");
+newTextArea.rows = 10;
+newTextArea.cols = 40;
+newTextArea.style.backgroundColor = "#23272e";
+newTextArea.style.color = "white";
 // divisions[0].appendChild(newTextArea);
 
 // Template Literals for Complex HTML:
-// const user = {name:"Ravish Ranjan",email:"ravishr.mca25@cs.du.ac.in",id:"custom-button"}
-// const userCard = `
-// <div class="user-card">
-// <h3>${user.name}</h3>
-// <p>Email: ${user.email}</p>
-// <button data-user-id="${user.id}">Contact</button>
-// </div>
-// `;
-// footer[0].innerHTML = userCard
+const user = {
+	name: "Ravish Ranjan",
+	email: "ravishr.mca25@cs.du.ac.in",
+	id: "custom-button",
+};
+const userCard = `
+<div class="user-card">
+<h3>${user.name}</h3>
+<p>Email: ${user.email}</p>
+<button data-user-id="${user.id}">Contact</button>
+</div>
+`;
+footer[0].innerHTML = userCard
 
 // event listener
 // button.addEventListener("click", () => {

@@ -1,0 +1,6 @@
+total 0
+drwxrwxrwx 1 ravish ravish 512 Oct  5 12:51 archive
+-rwxrwxrwx 1 ravish ravish   0 Oct  5 12:47 file1.txt
+-rwxrwxrwx 1 ravish ravish   0 Oct  5 12:47 file2.txt
+-rwxrwxrwx 1 ravish ravish   0 Oct  5 12:54 listing.txt
+drwxrwxrwx 1 ravish ravish 512 Oct  5 12:47 week2_lab
