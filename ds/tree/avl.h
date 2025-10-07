@@ -95,6 +95,71 @@ class AVL{
             return root;
         } 
 
+        BinNode<T>* remove(T data,BinNode<T>* root){
+            if (root == nullptr) return root;
+            else if (data < root->data)
+                root->left = remove(data,root->left);
+            else if (data > root->data)
+                root->right = remove(data,root->right);
+            else{
+                if ((root->left == nullptr) || (root->right == nullptr)){
+                    BinNode<T>* temp = root->left? root->left : root->right;
+                    if (temp == nullptr){
+                        temp = root;
+                        root = nullptr;
+                    } else {
+                        *root = *temp;
+                    }
+                    delete temp;
+                } else {
+                    BinNode<T>* temp = minValNode(root->right);
+                    root->data = temp->data;
+                    root->right = remove(temp->data,root->right);
+                }
+            }
+
+            if (root == nullptr) return root;
+            root->height = 1 + max(getHeight(root->left),getHeight(root->right));
+            int balance = getBalance(root);
+
+            if (balance > 1 && getBalance(root->left) >= 0)
+                return rightRotate(root);
+            if (balance < -1 && getBalance(root->right) <= 0){
+                return leftRotate(root);
+            }
+            if (balance > 1 && getBalance(root->left) < 0){
+                root->left = leftRotate(root->left);
+                return rightRotate(root);
+            }
+            if (balance < -1 && getBalance(root->right) > 0){
+                root->right = rightRotate(root->right);
+                return leftRotate(root);
+            }
+            return root;
+        }
+
+        void preOrder(BinNode<T>* root) {
+            if (root == nullptr) return;
+            std::cout << root->data << " ";
+            preOrder(root->left);
+            preOrder(root->right);
+        }
+        
+        void inOrder(BinNode<T>* root ) {
+            if (root == nullptr) return;
+            inOrder(root->left);
+            std::cout << root->data << " ";
+            inOrder(root->right);
+        }
+        
+        void postOrder(BinNode<T>* root ) {
+            if (root == nullptr) return;
+            postOrder(root->left);
+            postOrder(root->right);
+            std::cout << root->data << " ";
+        }
+        
+
         void printTree(BinNode<T>* root, int space = 0) {
             if (root == NULL) return;
             space += 10;
