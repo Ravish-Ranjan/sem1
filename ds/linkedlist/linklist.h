@@ -138,7 +138,7 @@ class LL{
             }
             head = tail = nullptr;
         }
-        void print(std::string msg="List"){
+        void print(std::string msg = "List"){
             std::cout << msg << " : ";
             NodeSin<T> *cur = head;
             while (cur != nullptr){

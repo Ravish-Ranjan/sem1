@@ -13,7 +13,7 @@ class BinNode{
 };
 
 template <typename T>
-class BinTree{
+class BST{
     public:
         BinNode<T>* root = nullptr;
         
@@ -113,6 +113,17 @@ class BinTree{
             if (root == nullptr) return 0;
             if (root->left == nullptr && root->right == nullptr) return 1;
             return countLeave(root->left) + countLeave(root->right);
+        }
+
+        void clear(BinNode<T>* root){
+            if (root == nullptr) return;
+            clear(root->left);
+            clear(root->right);
+            delete root;
+        }
+
+        ~BST(){
+            this->clear();
         }
 };
 

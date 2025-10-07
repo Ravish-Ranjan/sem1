@@ -159,7 +159,6 @@ class AVL{
             std::cout << root->data << " ";
         }
         
-
         void printTree(BinNode<T>* root, int space = 0) {
             if (root == NULL) return;
             space += 10;
@@ -168,6 +167,17 @@ class AVL{
             for (int i = 10; i < space; i++) std::cout << " ";
             std::cout << root->data << std::endl;
             printTree(root->left, space);
+        }
+
+        void clear(BinNode<T>* root){
+            if (root == nullptr) return;
+            clear(root->left);
+            clear(root->right);
+            delete root;
+        }
+
+        ~AVL(){
+            this->clear();
         }
 };
 

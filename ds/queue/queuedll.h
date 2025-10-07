@@ -41,7 +41,7 @@ class QueueDLL{
                 std::cout << "Empty queue" << std::endl;
                 return T();
             }
-            T ret = this->queue->delStart()
+            T ret = this->queue->delStart();
             this->head = this->queue->head;
             this->tail = this->queue->tail;
             return ret;

@@ -1,43 +1,20 @@
-#include "./tree/avl.h"
 #include <iostream>
+#include "./tree/heap.h"
 
 int main(){
-    AVL<int>* t = new AVL<int>();
-    t->root = t->insert(10,t->root);
-    t->root = t->insert(20,t->root);
-    t->root = t->insert(30,t->root);
-    t->root = t->insert(40,t->root);
-    t->root = t->insert(50,t->root);
-    t->root = t->insert(60,t->root);
-    std::cout << "--------------------" << std::endl;
-    t->printTree(t->root);
-    std::cout << "--------------------" << std::endl;
-    std::cout << "PreOrder : ";
-    t->preOrder(t->root); 
-    std::cout << std::endl;
-    std::cout << "InOrder : "; 
-    t->inOrder(t->root); 
-    std::cout << std::endl;
-    std::cout << "PostOrder : "; 
-    t->postOrder(t->root); 
-    std::cout << std::endl;
-    t->root = t->remove(70,t->root);
-     std::cout << "--------------------" << std::endl;
-    t->printTree(t->root);
-    std::cout << "--------------------" << std::endl;
-    t->root = t->remove(10,t->root);
-     std::cout << "--------------------" << std::endl;
-    t->printTree(t->root);
-    std::cout << "--------------------" << std::endl;
-    t->root = t->remove(60,t->root);
-     std::cout << "--------------------" << std::endl;
-    t->printTree(t->root);
-    std::cout << "--------------------" << std::endl;
-    t->root = t->insert(10,t->root);
-    t->root = t->insert(60,t->root);
-     std::cout << "--------------------" << std::endl;
-    t->printTree(t->root);
-    std::cout << "--------------------" << std::endl;
-    
+    Heap<int,Min_Heap> h;
+    h.buildHeap({1,2,3,4,5,6,7,8,9,10});
+    h.print();
+    std::cout << "Top : " << h.getTop() << std::endl;
+    h.extractTop();
+    h.print();
+    h.insert(1);
+    h.print();
+    std::cout << "isEmpty : " << h.isEmpty() << std::endl;
+    std::cout << "top : " << h.getTop() << std::endl;
+    h.print();
+    h.replaceTop(100);
+    h.print();
+    std::cout << "size : " << h.size() << std::endl;
     return 0;
 }

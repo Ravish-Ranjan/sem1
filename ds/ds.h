@@ -10,5 +10,6 @@
 #include "./array.h"
 #include "./tree/bst.h"
 #include "./tree/avl.h"
+#include "./tree/heap.h"
 
 #endif
