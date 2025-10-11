@@ -1,6 +1,7 @@
 # assignment files
 assign-*.*
 image*.png
+*tmp.html
 
 # testing
 test*.*
