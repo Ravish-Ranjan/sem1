@@ -1,0 +1,4 @@
+[1;34mDate & Time    : [0mFriday, 17 October 2025 06:00:14 PM
+[1;34mLogged-in User : [0mravish
+[1;34mSystem uptime  : [0mup 1 hour, 22 minutes
+[1;34mDisk usage (/) : [0mUsed : 1.9G (1%) | Avilable : 954G | Total : 1007G | Mount point : /
