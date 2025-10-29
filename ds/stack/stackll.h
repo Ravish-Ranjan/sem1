@@ -23,12 +23,12 @@ class StackLL{
                 delete newNode;
                 return false;
             }
-            catch(const std::exception& e)            {
+            catch(const std::exception& e) {
                 return true;
             }
         }
         void push(T value){
-            if (this->isFull()){
+            if (false){
                 std::cout << "Stack Overflow" << std::endl;
                 return;
             } 
