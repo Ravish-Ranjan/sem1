@@ -1,0 +1,10 @@
+./data/data1.txt : 12 lines, 74 words, 372 characters
+./data/data10.txt : 14 lines, 77 words, 434 characters
+./data/data2.txt : 10 lines, 56 words, 310 characters
+./data/data3.txt : 11 lines, 68 words, 341 characters
+./data/data4.txt : 15 lines, 89 words, 465 characters
+./data/data5.txt : 14 lines, 83 words, 434 characters
+./data/data6.txt : 15 lines, 88 words, 465 characters
+./data/data7.txt : 10 lines, 58 words, 310 characters
+./data/data8.txt : 14 lines, 81 words, 434 characters
+./data/data9.txt : 11 lines, 65 words, 341 characters

@@ -1,0 +1,73 @@
+Fri Oct 31 06:16:20 UTC 2025 : ERROR - Input directory not found : ./data 
+Fri Oct 31 06:17:05 UTC 2025 : ERROR - Input directory not found : ./data 
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data1.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data10.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data2.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data3.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data4.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data5.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data6.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data7.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data8.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ for file in "$INPUT_DIR"/*.txt
++ '[' '!' -f ' ./data/data9.txt ' ']'
+++ date
++ echo 'Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found '
+Fri Oct 31 06:19:19 UTC 2025 : WARNING - No files found 
++ continue
++ set +x
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 
+Fri Oct 31 06:19:51 UTC 2025 : WARNING - No files found 

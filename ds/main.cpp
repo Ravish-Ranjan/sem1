@@ -1,20 +1,32 @@
+#include "./pract/sets.h"
+#include <vector>
 #include <iostream>
-#include "./tree/heap.h"
 
 int main(){
-    Heap<int,Min_Heap> h;
-    h.buildHeap({1,2,3,4,5,6,7,8,9,10});
-    h.print();
-    std::cout << "Top : " << h.getTop() << std::endl;
-    h.extractTop();
-    h.print();
-    h.insert(1);
-    h.print();
-    std::cout << "isEmpty : " << h.isEmpty() << std::endl;
-    std::cout << "top : " << h.getTop() << std::endl;
-    h.print();
-    h.replaceTop(100);
-    h.print();
-    std::cout << "size : " << h.size() << std::endl;
+    std::vector<int> set1 = {1,2,3,4,5,6,7};
+    std::vector<int> set2 = {6,7,8,9,10,11,12};
+    std::vector<int> res1 = set_intersection<int>(set1,set2);
+    std::vector<int> res2 = set_union<int>(set1,set2);
+    std::vector<int> res3 = set_difference<int>(set1,set2);
+    std::vector<int> res4 = set_difference<int>(set2,set1);
+
+    std::cout << "Set 1 : " ;
+    for(int item:set1) std::cout << item << " ";
+
+    std::cout << "\nSet 2 : " ;
+    for(int item:set2) std::cout << item << " ";
+
+    std::cout << "\n\nIntersection : " ;
+    for(int item:res1) std::cout << item << " ";
+
+    std::cout << "\nUnion : " ;
+    for(int item:res2) std::cout << item << " ";
+
+    std::cout << "\nSet1 - Set2 : " ;
+    for(int item:res3) std::cout << item << " ";
+
+    std::cout << "\nSet2 - Set1 : " ;
+    for(int item:res4) std::cout << item << " ";
+
     return 0;
 }
