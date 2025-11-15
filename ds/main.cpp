@@ -1,32 +1,33 @@
-#include "./pract/sets.h"
-#include <vector>
 #include <iostream>
+#include "./graph/bfs.h"
 
 int main(){
-    std::vector<int> set1 = {1,2,3,4,5,6,7};
-    std::vector<int> set2 = {6,7,8,9,10,11,12};
-    std::vector<int> res1 = set_intersection<int>(set1,set2);
-    std::vector<int> res2 = set_union<int>(set1,set2);
-    std::vector<int> res3 = set_difference<int>(set1,set2);
-    std::vector<int> res4 = set_difference<int>(set2,set1);
+    SinNode<char>* n1 = new SinNode<char>('a');
+    SinNode<char>* n2 = new SinNode<char>('b');
+    SinNode<char>* n3 = new SinNode<char>('c');
+    SinNode<char>* n4 = new SinNode<char>('d');
+    SinNode<char>* n5 = new SinNode<char>('e');
+    SinNode<char>* n6 = new SinNode<char>('f');
+    SinNode<char>* n7 = new SinNode<char>('g');
 
-    std::cout << "Set 1 : " ;
-    for(int item:set1) std::cout << item << " ";
+    n1->adj.push_back(n2); // 1-> 2
+    n2->adj.push_back(n3); // 2 -> 3,4,5,7
+    n2->adj.push_back(n4);
+    n2->adj.push_back(n5);
+    n2->adj.push_back(n7);
+    n7->adj.push_back(n6); // 7 -> 6
+    // n6->adj.push_back(n1);
 
-    std::cout << "\nSet 2 : " ;
-    for(int item:set2) std::cout << item << " ";
+    BFS<char>(n1);
+    n1->visited = false;
+    n2->visited = false;
+    n3->visited = false;
+    n4->visited = false;
+    n5->visited = false;
+    n6->visited = false;
+    n7->visited = false;
 
-    std::cout << "\n\nIntersection : " ;
-    for(int item:res1) std::cout << item << " ";
 
-    std::cout << "\nUnion : " ;
-    for(int item:res2) std::cout << item << " ";
-
-    std::cout << "\nSet1 - Set2 : " ;
-    for(int item:res3) std::cout << item << " ";
-
-    std::cout << "\nSet2 - Set1 : " ;
-    for(int item:res4) std::cout << item << " ";
 
     return 0;
 }

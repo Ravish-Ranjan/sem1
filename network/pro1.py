@@ -5,7 +5,7 @@ from betweenness import calcEdgeBetweenness,calcNodeBetweenness
 from closeness import calcCloseness
 from weightedDegree import calcWeightedDegree
 from ravasz import similarityMatrix,aglo
-
+from louvain import louvainComms
 
 if __name__ == "__main__":
     G = nx.Graph()
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     # G.add_edge("B","C",weight=1)
     # G.add_edge("C","D",weight=1)
 
-    G.add_nodes_from("ABCDEFGHIJK")
+    # G.add_nodes_from("ABCDEFGHIJK")
 
     G.add_edge("A","B")
     G.add_edge("C","B")
@@ -49,13 +49,24 @@ if __name__ == "__main__":
     # calcEdgeBetweenness(G)
     # calcNodeBetweenness(G)
     # calcCloseness(G)
-    aglo(G)
+    # aglo(G)
+    # louvains
+    comms = louvainComms(G)
 
-    # pos = nx.spring_layout(G,seed=7)
+    for comm in comms:
+        print(comm)
+
+    # barabasi
+    G1 = nx.barabasi_albert_graph(n=10,m=2)
+
+
+
+
+    # pos = nx.spring_layout(G1,seed=7)
     # nx.draw(G, pos, with_labels=True, node_color="lightblue", node_size=1000, font_size=10)
     
-    # # Draw edge labels (weights)
+    # Draw edge labels (weights)
     # labels = nx.get_edge_attributes(G, 'weight')
-    # nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+    nx.draw(G1)
     
     plt.show()

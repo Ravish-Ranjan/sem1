@@ -1,0 +1,15 @@
+2025-11-15 12:01:34 INFO Server started successfully
+2025-11-15 12:05:42 WARN High memory usage detected: 85%
+2025-11-15 12:08:17 ERROR Database connection failed
+2025-11-15 12:15:03 INFO User admin logged in
+2025-11-15 12:18:29 WARN Disk space running low: 10% remaining
+2025-11-15 12:21:50 INFO Scheduled backup completed
+2025-11-15 12:25:11 ERROR Failed to send email notification
+2025-11-15 12:30:07 INFO New user registered: john_doe
+2025-11-15 12:33:44 WARN CPU temperature high: 92°C
+2025-11-15 12:37:20 ERROR File not found: /var/log/app.log
+2025-11-15 12:42:55 INFO Cache cleared successfully
+2025-11-15 12:45:18 WARN Slow response detected on API /login
+2025-11-15 12:49:06 INFO Session expired for user jane_smith
+2025-11-15 12:53:39 ERROR Unable to allocate memory for process
+2025-11-15 12:58:12 INFO Server shutting down for maintenance
